@@ -10,8 +10,7 @@ pipeline  {
      stage('Clone Code') {
       
        steps {
-            git branch: 'main',
-                url: 'https://github.com/karankk56/Project_1.git'
+            checkout scm
             }
          }
     
