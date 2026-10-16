@@ -3,8 +3,9 @@ pipeline  {
   agent any 
 
   environment {
-      IMAGE_NAME = "karanprajapati/dev-pro"
-       }
+    IMAGE_NAME = "karanprajapati/dev-pro"
+    KUBECONFIG = "/var/lib/jenkins/.kube/config"
+}
   
   stages {
      stage('Checkout Code') {

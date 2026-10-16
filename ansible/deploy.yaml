@@ -1,18 +1,22 @@
 ---
-- name: Deploy application to kubernetes
-
+- name: Deploy application to Kubernetes
   hosts: localhost
+  connection: local
+  gather_facts: false
 
   tasks:
-
     - name: Apply Kubernetes Deployment
-      command: kubectl apply -f ../k8s/deployment.yaml
+      ansible.builtin.command:
+        argv:
+          - kubectl
+          - apply
+          - -f
+          - "{{ playbook_dir }}/../k8s/deployment.yaml"
 
-    - name: Apply Kubernetes Services
-      command: kubectl apply -f ../k8s/service.yaml
-
-    - name: Restart Deployment
-      command: kubectl rollout restart deployment/dev-pro
-
-
-
+    - name: Apply Kubernetes Service
+      ansible.builtin.command:
+        argv:
+          - kubectl
+          - apply
+          - -f
+          - "{{ playbook_dir }}/../k8s/service.yaml"
